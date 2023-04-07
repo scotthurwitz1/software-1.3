@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="1418.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainFormController">
+   <children>
+      <HBox spacing="700.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory Management system">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="50.0" top="50.0" />
+               </HBox.margin>
+            </Text>
+         </children>
+      </HBox>
+      <VBox prefHeight="349.0" prefWidth="1279.0" spacing="20.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="125.0">
+         <children>
+            <HBox prefHeight="265.0" prefWidth="1281.0" spacing="50.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <HBox spacing="400.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Parts">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="partSearchTxt" text="Search by Part ID or Name" />
+                           </children>
+                        </HBox>
+                        <TableView fx:id="partsTbl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0">
+                           <columns>
+                              <TableColumn fx:id="partIdCol" prefWidth="75.0" text="Part ID" />
+                              <TableColumn fx:id="partNameCol" prefWidth="143.79612731933594" text="Part Name" />
+                              <TableColumn fx:id="partInvCol" prefWidth="154.203857421875" text="Inventory Level" />
+                              <TableColumn fx:id="partCostCol" prefWidth="207.8400421142578" text="Price/ Cost per Unit" />
+                           </columns>
+                        </TableView>
+                        <HBox alignment="CENTER_RIGHT" spacing="5.0">
+                           <children>
+                              <Button fx:id="partAddBtn" mnemonicParsing="false" onAction="#onActionAddPart" text="Add" />
+                              <Button fx:id="partModBtn" mnemonicParsing="false" onAction="#onActionModifyPart" text="Modify" />
+                              <Button fx:id="partDelBtn" mnemonicParsing="false" onAction="#onActionDeletePart" text="Delete" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="400.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Products">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="searchProdTxt" text="Search by Product ID or Name" />
+                           </children>
+                        </HBox>
+                        <TableView fx:id="prodTbl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0">
+                           <columns>
+                              <TableColumn fx:id="prodIdCol" prefWidth="75.0" text="Product ID" />
+                              <TableColumn fx:id="prodNameCol" prefWidth="143.79612731933594" text="Product Name" />
+                              <TableColumn fx:id="prodInvCol" prefWidth="154.203857421875" text="Inventory Level" />
+                              <TableColumn fx:id="prodPriceCol" prefWidth="207.8400421142578" text="Price/ Cost per Unit" />
+                           </columns>
+                        </TableView>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="prodAddBtn" mnemonicParsing="false" onAction="#onActionAddProduct" text="Add" />
+                              <Button fx:id="prodModBtn" layoutX="440.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionModifyProduct" text="Modify" />
+                              <Button fx:id="prodDelBtn" layoutX="280.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionDeleteProduct" text="Delete" />
+                           </children>
+                           <VBox.margin>
+                              <Insets right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="1311.0" spacing="50.0">
+               <children>
+                  <Button fx:id="exitBtn" alignment="TOP_LEFT" layoutX="1311.0" layoutY="11.0" mnemonicParsing="false" onAction="#onActionExit" prefHeight="26.0" prefWidth="43.0" text="Exit" />
+               </children>
+               <VBox.margin>
+                  <Insets right="25.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="50.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
