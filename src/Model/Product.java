@@ -12,7 +12,7 @@ public class Product {
     private int max;
 
     // Declare Methods
-    Product(int id, String name, double price, int stock, int min, int max){
+    public Product(int id, String name, double price, int stock, int min, int max){
         this.id = id;
         this.name = name;
         this.price = price;

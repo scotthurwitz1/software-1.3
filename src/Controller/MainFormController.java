@@ -73,7 +73,7 @@ public class MainFormController implements Initializable {
     private TableColumn<Product, String> prodNameCol;
 
     @FXML
-    private TableColumn<Product, Float> prodCostCol;
+    private TableColumn<Product, Float> prodPriceCol;
 
     @FXML
     private TableView<Product> prodTbl;
@@ -136,12 +136,12 @@ public class MainFormController implements Initializable {
         partInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         
-//        // Products Table Methods
-//        prodTbl.setItems(Inventory.getAllProducts());
-//        prodIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        prodCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-//        prodInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-//        prodNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        // Products Table Methods
+        prodTbl.setItems(Inventory.getAllProducts());
+        prodIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        prodPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        prodInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        prodNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         
         
     }

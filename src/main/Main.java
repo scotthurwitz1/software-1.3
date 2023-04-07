@@ -6,6 +6,7 @@ package main;
 import Model.InHouse;
 import Model.Inventory;
 import Model.Part;
+import Model.Product;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,9 +31,17 @@ public class Main extends Application{
         InHouse part3 = new InHouse(2, "metal", 20.5, 1, 109, 200, 14);
         //outsourced 
         
+        Product prod1 = new Product(0, "toy", 10.5, 0, 10, 100);
+        Product prod2 = new Product(1, "food", 10.5, 0, 10, 100);
+        Product prod3 = new Product(2, "straw", 10.5, 0, 10, 100);
+        
         Inventory.addPart(part1);
         Inventory.addPart(part2);
         Inventory.addPart(part3);
+        
+        Inventory.addProduct(prod1);
+        Inventory.addProduct(prod2);
+        Inventory.addProduct(prod3);
         
         launch(args);
     }
