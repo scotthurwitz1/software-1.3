@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Inventory;
+import static Model.Inventory.getAllParts;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,7 +56,15 @@ public class AddPartFormController implements Initializable {
 
     @FXML
     void onActionSavePart(ActionEvent event) {
-        System.out.println("Part Saved");
+        
+        int id = Inventory.getAllParts().size()+1;
+        String name = nameTxt.getText();
+        int inv = Integer.parseInt(invTxt.getText());
+        float price = Float.parseFloat(priceTxt.getText());
+        int max = Integer.parseInt(maxTxt.getText());
+        int min = Integer.parseInt(minTxt.getText());
+        int machineId = Integer.parseInt(machineIdTxt.getText());
+        
     }
     
     @Override
