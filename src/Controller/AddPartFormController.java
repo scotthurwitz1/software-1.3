@@ -79,7 +79,7 @@ public class AddPartFormController implements Initializable {
     }
 
     @FXML
-    void onActionSavePart(ActionEvent event) {
+    void onActionSavePart(ActionEvent event) throws IOException {
         
         // Parse fields on form
         int id = Inventory.getAllParts().size()+1;
@@ -97,6 +97,8 @@ public class AddPartFormController implements Initializable {
             String companyName = machineIdTxt.getText();
             Inventory.addPart(new Outsourced(id, name, price, inv, min, max, companyName));
         }
+        
+        switcher.screen("/View/mainForm.fxml", event);
         
     }
     

@@ -126,6 +126,15 @@ public class MainFormController implements Initializable {
 
     }
     
+    public boolean search(int id) {
+     
+        for(Part part : Inventory.getAllParts()){
+            if(part.getId() == id)
+                return true;
+        }
+        return false;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         
@@ -143,7 +152,10 @@ public class MainFormController implements Initializable {
         prodInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         prodNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         
-        
+        if (search(6))
+            System.out.println("Match");
+        else
+            System.out.println("No Match");
     }
 
 }
