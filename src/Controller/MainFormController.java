@@ -159,6 +159,17 @@ public class MainFormController implements Initializable {
         return false;
     }
     
+    public Part selectPart(int id)
+    {
+        for(Part part : Inventory.getAllParts())
+        {
+            if(part.getId() == id)
+                return part;
+        }
+        
+        return null;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         
@@ -192,4 +203,9 @@ public class MainFormController implements Initializable {
 //        System.out.println("no match");
 //    }
 
+    partsTbl.getSelectionModel().select(selectPart(0));
+    
+
+    }
 }
+    
