@@ -150,6 +150,15 @@ public class MainFormController implements Initializable {
         return false;
     }
     
+    public boolean delete(int id){
+        
+        for(Part part : Inventory.getAllParts()){
+            if(part.getId()==id)
+                return Inventory.getAllParts().remove(part);
+        }
+        return false;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         
@@ -172,10 +181,15 @@ public class MainFormController implements Initializable {
 //        else
 //            System.out.println("No Match");
         
-        if(update(1, new InHouse(2, "twigs", 20.5, 1, 109, 200, 14)))
-            System.out.println("Update Successful");
-        else
-            System.out.println("update failed");
-    }
+//        if(update(1, new InHouse(2, "twigs", 20.5, 1, 109, 200, 14)))
+//            System.out.println("Update Successful");
+//        else
+//            System.out.println("update failed");
+
+//    if(delete(0))
+//        System.out.println("deleted");
+//    else
+//        System.out.println("no match");
+//    }
 
 }
