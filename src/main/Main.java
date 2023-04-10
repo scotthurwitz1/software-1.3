@@ -23,6 +23,7 @@ public class Main extends Application{
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         // TODO code application logic here
         // sample data
         // InHouse(int id, String name, double price, int stock, int min, int max, int machineID)

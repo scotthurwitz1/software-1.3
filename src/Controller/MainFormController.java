@@ -7,6 +7,8 @@ import Model.Product;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import main.Methods;
+import static main.Methods.selectPart;
 import main.Switcher;
 
 public class MainFormController implements Initializable {
@@ -127,49 +131,6 @@ public class MainFormController implements Initializable {
 
     }
     
-    public boolean search(int id) {
-     
-        for(Part part : Inventory.getAllParts()){
-            if(part.getId() == id)
-                return true;
-        }
-        return false;
-    }
-    
-    public boolean update(int id, Part part){
-        int index = -1;
-        for(Part part1 : Inventory.getAllParts())
-        {
-            index++;
-            if (part1.getId() == id)
-            {
-                Inventory.getAllParts().set(index, part);
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public boolean delete(int id){
-        
-        for(Part part : Inventory.getAllParts()){
-            if(part.getId()==id)
-                return Inventory.getAllParts().remove(part);
-        }
-        return false;
-    }
-    
-    public Part selectPart(int id)
-    {
-        for(Part part : Inventory.getAllParts())
-        {
-            if(part.getId() == id)
-                return part;
-        }
-        
-        return null;
-    }
-    
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         
@@ -197,15 +158,14 @@ public class MainFormController implements Initializable {
 //        else
 //            System.out.println("update failed");
 
-//    if(delete(0))
-//        System.out.println("deleted");
-//    else
-//        System.out.println("no match");
-//    }
-
-    partsTbl.getSelectionModel().select(selectPart(0));
+    if(Methods.delete(0))
+        System.out.println("deleted");
+    else
+        System.out.println("no match");
     
-
+    partsTbl.getSelectionModel().select(Methods.selectPart(0));
+  
     }
 }
+
     
