@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.InHouse;
 import Model.Inventory;
 import Model.Part;
 import Model.Product;
@@ -135,6 +136,20 @@ public class MainFormController implements Initializable {
         return false;
     }
     
+    public boolean update(int id, Part part){
+        int index = -1;
+        for(Part part1 : Inventory.getAllParts())
+        {
+            index++;
+            if (part1.getId() == id)
+            {
+                Inventory.getAllParts().set(index, part);
+                return true;
+            }
+        }
+        return false;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         
@@ -152,10 +167,15 @@ public class MainFormController implements Initializable {
         prodInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         prodNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         
-        if (search(6))
-            System.out.println("Match");
+//        if (search(6))
+//            System.out.println("Match");
+//        else
+//            System.out.println("No Match");
+        
+        if(update(1, new InHouse(2, "twigs", 20.5, 1, 109, 200, 14)))
+            System.out.println("Update Successful");
         else
-            System.out.println("No Match");
+            System.out.println("update failed");
     }
 
 }
