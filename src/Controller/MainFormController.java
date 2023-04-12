@@ -27,6 +27,8 @@ import main.Switcher;
 
 public class MainFormController implements Initializable {
     
+    Stage stage;
+    Parent scene;
     Switcher switcher = new Switcher();
     
     @FXML
@@ -120,7 +122,17 @@ public class MainFormController implements Initializable {
     @FXML
     void onActionModifyPart(ActionEvent event) throws IOException {
         
-        switcher.screen("/View/modifyPartForm.fxml", event);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/modifyPartForm.fxml"));
+        loader.load();
+        
+        ModifyPartFormController MPFController = loader.getController();
+        MPFController.sendPart(partsTbl.getSelectionModel().getSelectedItem());
+        
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        Parent scene = loader.getRoot();
+        stage.setScene(new Scene(scene));
+        stage.showAndWait();
         
     }
 
@@ -134,10 +146,10 @@ public class MainFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         
-        // Parts Table Methods
-//        partsTbl.setItems(Inventory.getAllParts());
+//        Parts Table Methods
+        partsTbl.setItems(Inventory.getAllParts());
 
-        partsTbl.setItems(Methods.filter("p"));
+//        partsTbl.setItems(Methods.filter("p"));
                  
         partIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         partCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));

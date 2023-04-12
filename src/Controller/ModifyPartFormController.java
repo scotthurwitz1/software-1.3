@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Part;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -60,6 +61,13 @@ public class ModifyPartFormController implements Initializable {
     void onActionSavePart(ActionEvent event) {
 
     }
+    
+    public void sendPart(Part part)
+    {
+//        nameTxt.setText(part.getName());
+        invTxt.setText(String.valueOf(part.getStock()));
+    }
+    
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
