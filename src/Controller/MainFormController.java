@@ -133,7 +133,6 @@ public class MainFormController implements Initializable {
         Parent scene = loader.getRoot();
         stage.setScene(new Scene(scene));
         stage.show();
-//        stage.showAndWait();
         
     }
 
