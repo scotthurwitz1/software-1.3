@@ -135,7 +135,10 @@ public class MainFormController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         
         // Parts Table Methods
-        partsTbl.setItems(Inventory.getAllParts());
+//        partsTbl.setItems(Inventory.getAllParts());
+
+        partsTbl.setItems(Methods.filter("p"));
+                 
         partIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         partCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
         partInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
@@ -157,14 +160,15 @@ public class MainFormController implements Initializable {
 //            System.out.println("Update Successful");
 //        else
 //            System.out.println("update failed");
-
-    if(Methods.delete(0))
-        System.out.println("deleted");
-    else
-        System.out.println("no match");
-    
-    partsTbl.getSelectionModel().select(Methods.selectPart(0));
+//
+//    if(Methods.delete(0))
+//        System.out.println("deleted");
+//    else
+//        System.out.println("no match");
+//    
+//    partsTbl.getSelectionModel().select(Methods.selectPart(0));
   
+
     }
 }
 
