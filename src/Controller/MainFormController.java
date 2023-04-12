@@ -140,7 +140,10 @@ public class MainFormController implements Initializable {
         catch(NullPointerException e)
         {
             System.out.println("No part selected.");
+            System.out.println("Exception " + e);
+            System.out.println("Exception " + e.getMessage());
         }
+             
         
     }
 
