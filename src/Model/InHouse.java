@@ -3,7 +3,7 @@ package Model;
 public class InHouse extends Part{
 
     // Declare Fields
-    private static int machineId;
+    private int machineId;
 
     // Declare Methods
     public InHouse(int id, String name, double price, int stock, int min, int max, int machineID){
@@ -11,7 +11,7 @@ public class InHouse extends Part{
         this.machineId = machineID;
     }
 
-    public static int getMachineId() {
+    public int getMachineId() {
         return machineId;
     }
 

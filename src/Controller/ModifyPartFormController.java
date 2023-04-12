@@ -74,15 +74,15 @@ public class ModifyPartFormController implements Initializable {
     public void sendPart(Part part)
     {
         System.out.println(String.valueOf(part.getClass()));
-        if(String.valueOf(part.getClass()).equals("class Model.InHouse"))
+        if(part instanceof InHouse)
         {
-            machineIdTxt.setText(String.valueOf(InHouse.getMachineId()));
+            machineIdTxt.setText(String.valueOf(((InHouse) part).getMachineId()));
             inHouseBtn.setSelected(true);
         }
         else
         {
             machineIdLbl.setText("Company Name");
-            machineIdTxt.setText(Outsourced.getCompanyName());
+            machineIdTxt.setText(((Outsourced) part).getCompanyName());
             outsourcedBtn.setSelected(true);
         }
             

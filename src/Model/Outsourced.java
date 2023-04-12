@@ -3,7 +3,7 @@ package Model;
 public class Outsourced extends Part{
 
     // Declare Fields
-    private static String companyName;
+    private String companyName;
 
     // Declare Methods
     public Outsourced(int id, String name, double price, int stock, int min, int max, String companyName){
@@ -12,7 +12,7 @@ public class Outsourced extends Part{
     }
 
     public void setCompanyName(String companyName){}
-    public static String getCompanyName(){
+    public String getCompanyName(){
         return companyName;
     };
 }
