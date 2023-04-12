@@ -122,17 +122,25 @@ public class MainFormController implements Initializable {
     @FXML
     void onActionModifyPart(ActionEvent event) throws IOException {
         
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/View/modifyPartForm.fxml"));
-        loader.load();
+        try
+        {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/View/modifyPartForm.fxml"));
+            loader.load();
+
+            ModifyPartFormController MPFController = loader.getController();
+            MPFController.sendPart(partsTbl.getSelectionModel().getSelectedItem());
+
+            stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
         
-        ModifyPartFormController MPFController = loader.getController();
-        MPFController.sendPart(partsTbl.getSelectionModel().getSelectedItem());
-        
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        Parent scene = loader.getRoot();
-        stage.setScene(new Scene(scene));
-        stage.show();
+        catch(NullPointerException e)
+        {
+            System.out.println("No part selected.");
+        }
         
     }
 

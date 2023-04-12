@@ -9,16 +9,21 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 import main.Switcher;
 
 public class ModifyPartFormController implements Initializable {
     
     Switcher switcher = new Switcher();
+    Stage stage;
+    Parent scene;
 
     @FXML
     private Button cancelBtn;
@@ -73,7 +78,6 @@ public class ModifyPartFormController implements Initializable {
     
     public void sendPart(Part part)
     {
-        System.out.println(String.valueOf(part.getClass()));
         if(part instanceof InHouse)
         {
             machineIdTxt.setText(String.valueOf(((InHouse) part).getMachineId()));
@@ -85,14 +89,13 @@ public class ModifyPartFormController implements Initializable {
             machineIdTxt.setText(((Outsourced) part).getCompanyName());
             outsourcedBtn.setSelected(true);
         }
-            
-        idTxt.setText(String.valueOf(part.getId()));
-        nameTxt.setText(part.getName());
-        invTxt.setText(String.valueOf(part.getStock()));
-        priceTxt.setText(String.valueOf(part.getPrice()));
-        maxTxt.setText(String.valueOf(part.getMax()));
-        minTxt.setText(String.valueOf(part.getMin()));
-     
+
+            idTxt.setText(String.valueOf(part.getId()));
+            nameTxt.setText(part.getName());
+            invTxt.setText(String.valueOf(part.getStock()));
+            priceTxt.setText(String.valueOf(part.getPrice()));
+            maxTxt.setText(String.valueOf(part.getMax()));
+            minTxt.setText(String.valueOf(part.getMin()));     
     }
     
     
