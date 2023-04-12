@@ -44,6 +44,9 @@ public class AddPartFormController implements Initializable {
 
     @FXML
     private RadioButton outsourcedBtn;
+    
+    @FXML
+    private TextField idTxt;
 
     @FXML
     private TextField priceTxt;

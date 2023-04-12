@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.InHouse;
+import Model.Outsourced;
 import Model.Part;
 import java.io.IOException;
 import java.net.URL;
@@ -8,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -25,6 +28,9 @@ public class ModifyPartFormController implements Initializable {
 
     @FXML
     private TextField invTxt;
+    
+    @FXML
+    private TextField idTxt;
 
     @FXML
     private TextField machineIdTxt;
@@ -43,6 +49,9 @@ public class ModifyPartFormController implements Initializable {
 
     @FXML
     private TextField priceTxt;
+    
+    @FXML
+    private Label machineIdLbl;
 
     @FXML
     private Button saveBtn;
@@ -64,8 +73,26 @@ public class ModifyPartFormController implements Initializable {
     
     public void sendPart(Part part)
     {
-//        nameTxt.setText(part.getName());
+        System.out.println(String.valueOf(part.getClass()));
+        if(String.valueOf(part.getClass()).equals("class Model.InHouse"))
+        {
+            machineIdTxt.setText(String.valueOf(InHouse.getMachineId()));
+            inHouseBtn.setSelected(true);
+        }
+        else
+        {
+            machineIdLbl.setText("Company Name");
+            machineIdTxt.setText(Outsourced.getCompanyName());
+            outsourcedBtn.setSelected(true);
+        }
+            
+        idTxt.setText(String.valueOf(part.getId()));
+        nameTxt.setText(part.getName());
         invTxt.setText(String.valueOf(part.getStock()));
+        priceTxt.setText(String.valueOf(part.getPrice()));
+        maxTxt.setText(String.valueOf(part.getMax()));
+        minTxt.setText(String.valueOf(part.getMin()));
+     
     }
     
     

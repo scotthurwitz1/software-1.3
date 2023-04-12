@@ -132,7 +132,8 @@ public class MainFormController implements Initializable {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         Parent scene = loader.getRoot();
         stage.setScene(new Scene(scene));
-        stage.showAndWait();
+        stage.show();
+//        stage.showAndWait();
         
     }
 

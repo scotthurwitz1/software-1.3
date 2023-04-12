@@ -5,6 +5,7 @@
 package main;
 import Model.InHouse;
 import Model.Inventory;
+import Model.Outsourced;
 import Model.Part;
 import Model.Product;
 import javafx.application.Application;
@@ -30,6 +31,7 @@ public class Main extends Application{
         InHouse part1 = new InHouse(0, "plastic", 10.5, 0, 10, 100, 13);
         InHouse part2 = new InHouse(1, "nail", 115.5, 0, 11, 110, 13);
         InHouse part3 = new InHouse(2, "metal", 20.5, 1, 109, 200, 14);
+        Outsourced part4 = new Outsourced(2, "metal", 20.5, 1, 109, 200, "sacks");
         //outsourced 
         
         // sample product data
@@ -39,7 +41,7 @@ public class Main extends Application{
         
         Inventory.addPart(part1);
         Inventory.addPart(part2);
-        Inventory.addPart(part3);
+        Inventory.addPart(part4);
         
         Inventory.addProduct(prod1);
         Inventory.addProduct(prod2);
