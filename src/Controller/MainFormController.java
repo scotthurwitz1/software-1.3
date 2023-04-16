@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -139,9 +140,14 @@ public class MainFormController implements Initializable {
         
         catch(NullPointerException e)
         {
-            System.out.println("No part selected.");
-            System.out.println("Exception " + e);
-            System.out.println("Exception " + e.getMessage());
+//            System.out.println("No part selected.");
+//            System.out.println("Exception " + e);
+//            System.out.println("Exception " + e.getMessage());
+            
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setContentText("No Part Selected.");
+            alert.showAndWait();
         }
              
         
