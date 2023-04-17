@@ -73,7 +73,7 @@ public class ModifyPartFormController implements Initializable {
 
     @FXML
     void onActionSavePart(ActionEvent event) {
-
+        
     }
     
     public void sendPart(Part part)

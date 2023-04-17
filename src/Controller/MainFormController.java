@@ -136,10 +136,10 @@ public class MainFormController implements Initializable {
         try
         {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/View/modifyPartForm.fxml"));
+            loader.setLocation(getClass().getResource("/View/addPartForm.fxml"));
             loader.load();
 
-            ModifyPartFormController MPFController = loader.getController();
+            AddPartFormController MPFController = loader.getController();
             MPFController.sendPart(partsTbl.getSelectionModel().getSelectedItem());
 
             stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -166,8 +166,34 @@ public class MainFormController implements Initializable {
     @FXML
     void onActionModifyProduct(ActionEvent event) throws IOException {
         
-        switcher.screen("/View/modifyProductForm.fxml", event);
+        try
+        {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/View/modifyProductForm.fxml"));
+            loader.load();
 
+            ModifyProductFormController MPFController = loader.getController();
+            MPFController.sendProd(prodTbl.getSelectionModel().getSelectedItem());
+
+            stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+        
+        catch(NullPointerException e)
+        {
+//            System.out.println("No part selected.");
+//            System.out.println("Exception " + e);
+//            System.out.println("Exception " + e.getMessage());
+            
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setContentText("No Part Selected.");
+            alert.showAndWait();
+        }
+             
+        
     }
     
     @Override

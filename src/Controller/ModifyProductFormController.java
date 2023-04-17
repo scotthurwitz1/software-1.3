@@ -1,6 +1,8 @@
 package Controller;
 
+import Model.Inventory;
 import Model.Part;
+import Model.Product;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import static main.Methods.update;
 import main.Switcher;
 
 public class ModifyProductFormController implements Initializable {
@@ -55,6 +58,9 @@ public class ModifyProductFormController implements Initializable {
 
     @FXML
     private TextField priceTxt;
+    
+    @FXML
+    private TextField idTxt;
 
     @FXML
     private TableColumn<Part, Integer> relPartIdCol;
@@ -106,12 +112,35 @@ public class ModifyProductFormController implements Initializable {
     }
 
     @FXML
-    void onActionSaveProduct(ActionEvent event) {
+    void onActionSaveProduct(ActionEvent event) throws IOException {
+        
+        int id = Integer.parseInt(idTxt.getText());
+        String name = nameTxt.getText();
+        int inv = Integer.parseInt(invTxt.getText());
+        float price = Float.parseFloat(priceTxt.getText());
+        int max = Integer.parseInt(maxTxt.getText());
+        int min = Integer.parseInt(minTxt.getText());
+        
+        Product prod1 = new Product(id, name, price, inv, min, max);
+        update(id, prod1);
+        
+        switcher.screen("/View/mainForm.fxml", event);
 
     }
 
     @FXML
     void onActionSaveToMain(ActionEvent event) {
+
+    }
+    
+        public void sendProd(Product prod)
+    {
+        idTxt.setText(String.valueOf(prod.getId()));
+        nameTxt.setText(prod.getName());
+        invTxt.setText(String.valueOf(prod.getStock()));
+        priceTxt.setText(String.valueOf(prod.getPrice()));
+        maxTxt.setText(String.valueOf(prod.getMax()));
+        minTxt.setText(String.valueOf(prod.getMin()));   
 
     }
     

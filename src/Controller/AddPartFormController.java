@@ -4,6 +4,7 @@ import Model.InHouse;
 import Model.Inventory;
 import static Model.Inventory.getAllParts;
 import Model.Outsourced;
+import Model.Part;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -113,6 +114,28 @@ public class AddPartFormController implements Initializable {
         
         switcher.screen("/View/mainForm.fxml", event);
         
+    }
+    
+    public void sendPart(Part part)
+    {
+        if(part instanceof InHouse)
+        {
+            machineIdTxt.setText(String.valueOf(((InHouse) part).getMachineId()));
+            inHouseBtn.setSelected(true);
+        }
+        else
+        {
+            machineIdLbl.setText("Company Name");
+            machineIdTxt.setText(((Outsourced) part).getCompanyName());
+            outsourcedBtn.setSelected(true);
+        }
+
+            idTxt.setText(String.valueOf(part.getId()));
+            nameTxt.setText(part.getName());
+            invTxt.setText(String.valueOf(part.getStock()));
+            priceTxt.setText(String.valueOf(part.getPrice()));
+            maxTxt.setText(String.valueOf(part.getMax()));
+            minTxt.setText(String.valueOf(part.getMin()));     
     }
     
     @Override

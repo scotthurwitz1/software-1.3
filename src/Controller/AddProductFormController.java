@@ -41,6 +41,9 @@ public class AddProductFormController implements Initializable {
 
     @FXML
     private TextField nameTxt;
+    
+     @FXML
+    private TextField idTxt;
 
     @FXML
     private TableColumn<Part, Integer> partListIdCol;
@@ -128,6 +131,16 @@ public class AddProductFormController implements Initializable {
     @FXML
     void onActionSaveToMain(ActionEvent event) {
 
+    }
+    
+    public void sendProd(Product prod)
+    {
+        idTxt.setText(String.valueOf(prod.getId()));
+        nameTxt.setText(prod.getName());
+        invTxt.setText(String.valueOf(prod.getStock()));
+        priceTxt.setText(String.valueOf(prod.getPrice()));
+        maxTxt.setText(String.valueOf(prod.getMax()));
+        minTxt.setText(String.valueOf(prod.getMin()));     
     }
     
     @Override

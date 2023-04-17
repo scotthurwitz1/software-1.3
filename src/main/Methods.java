@@ -6,6 +6,7 @@ package main;
 
 import Model.Inventory;
 import Model.Part;
+import Model.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -34,6 +35,20 @@ public class Methods {
             if (part1.getId() == id)
             {
                 Inventory.getAllParts().set(index, part);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public static boolean update(int id, Product prod){
+        int index = -1;
+        for(Product prod1 : Inventory.getAllProducts())
+        {
+            index++;
+            if (prod1.getId() == id)
+            {
+                Inventory.getAllProducts().set(index, prod);
                 return true;
             }
         }
