@@ -18,6 +18,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import static main.Methods.partId;
 import main.Switcher;
 
 public class AddPartFormController implements Initializable {
@@ -81,14 +82,16 @@ public class AddPartFormController implements Initializable {
     @FXML
     void onActionCancelPart(ActionEvent event) throws IOException {
         
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to return to Main Menu without saving?");
+        switcher.screen("/View/mainForm.fxml", event);
         
-        Optional<ButtonType> result = alert.showAndWait();
- 
-        if(result.isPresent() && result.get() == ButtonType.OK)
-        {
-            switcher.screen("/View/mainForm.fxml", event);
-        }
+//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to return to Main Menu without saving?");
+//        
+//        Optional<ButtonType> result = alert.showAndWait();
+// 
+//        if(result.isPresent() && result.get() == ButtonType.OK)
+//        {
+//            switcher.screen("/View/mainForm.fxml", event);
+//        }
         
     }
 
@@ -96,7 +99,8 @@ public class AddPartFormController implements Initializable {
     void onActionSavePart(ActionEvent event) throws IOException {
         
         // Parse fields on form
-        int id = Inventory.getAllParts().size()+1;
+        partId += 1;
+        int id = partId;
         String name = nameTxt.getText();
         int inv = Integer.parseInt(invTxt.getText());
         float price = Float.parseFloat(priceTxt.getText());
@@ -140,7 +144,7 @@ public class AddPartFormController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
+        idTxt.setDisable(true);
     }
 
 }

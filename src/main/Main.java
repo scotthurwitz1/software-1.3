@@ -26,6 +26,8 @@ public class Main extends Application{
     public static void main(String[] args) {
         
         // TODO code application logic here
+        
+        
         // sample data
         // InHouse(int id, String name, double price, int stock, int min, int max, int machineID)
         InHouse part1 = new InHouse(0, "plastic", 10.5, 0, 10, 100, 13);

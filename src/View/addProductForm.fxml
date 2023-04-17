@@ -53,7 +53,7 @@
                               <Label text="Inv" GridPane.rowIndex="2" />
                               <Label text="Price/Cost" GridPane.rowIndex="3" />
                               <Label text="Max" GridPane.rowIndex="4" />
-                              <TextField editable="false" promptText="Auto Gen - Disabled" GridPane.columnIndex="1">
+                              <TextField fx:id="idTxt" promptText="Auto Gen - Disabled" GridPane.columnIndex="1">
                                  <font>
                                     <Font name="System Italic" size="13.0" />
                                  </font>

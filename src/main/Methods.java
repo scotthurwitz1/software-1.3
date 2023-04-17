@@ -18,6 +18,8 @@ public class Methods {
     
     private static ObservableList<Part> filteredParts = FXCollections.observableArrayList();
     private static ObservableList<Product> filteredProds = FXCollections.observableArrayList();
+    public static int partId = 0;
+    public static int prodId = 0;
         
     public static boolean search(int id) {
      

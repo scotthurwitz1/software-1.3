@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import static main.Methods.prodId;
 import main.Switcher;
 
 public class AddProductFormController implements Initializable {
@@ -115,7 +116,8 @@ public class AddProductFormController implements Initializable {
     @FXML
     void onActionSave(ActionEvent event) throws IOException {
         // Parse fields on form
-        int id = Inventory.getAllParts().size()+1;
+        prodId += 1;
+        int id = prodId;
         String name = nameTxt.getText();
         int inv = Integer.parseInt(invTxt.getText());
         float price = Float.parseFloat(priceTxt.getText());
@@ -145,8 +147,7 @@ public class AddProductFormController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    
+           idTxt.setDisable(true);
     }
 
 }
