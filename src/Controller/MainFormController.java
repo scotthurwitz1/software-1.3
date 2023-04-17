@@ -105,7 +105,8 @@ public class MainFormController implements Initializable {
 
     @FXML
     void onActionDeletePart(ActionEvent event) {
-
+        Part part = partsTbl.getSelectionModel().getSelectedItem();
+        Inventory.deletePart(part);
     }
 
     @FXML

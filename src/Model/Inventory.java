@@ -33,9 +33,12 @@ public class Inventory {
     }
     public static void updatePart(int index, Part selectedPart){}
     public static void updateProduct(int index, Product newProduct){}
+    
     public static boolean deletePart(Part selectedPart){
-        return false;
+        allParts.remove(selectedPart);
+        return allParts.contains(selectedPart);
     }
+    
     public static  boolean deleteProduct(Product selectedProduct){
         return false;
     }
