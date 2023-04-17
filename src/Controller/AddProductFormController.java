@@ -1,6 +1,10 @@
 package Controller;
 
+import Model.InHouse;
+import Model.Inventory;
+import Model.Outsourced;
 import Model.Part;
+import Model.Product;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -85,7 +89,7 @@ public class AddProductFormController implements Initializable {
 
     @FXML
     void onActionAddPart(ActionEvent event) {
-
+        
     }
 
     @FXML
@@ -106,8 +110,19 @@ public class AddProductFormController implements Initializable {
     }
 
     @FXML
-    void onActionSave(ActionEvent event) {
+    void onActionSave(ActionEvent event) throws IOException {
+        // Parse fields on form
+        int id = Inventory.getAllParts().size()+1;
+        String name = nameTxt.getText();
+        int inv = Integer.parseInt(invTxt.getText());
+        float price = Float.parseFloat(priceTxt.getText());
+        int max = Integer.parseInt(maxTxt.getText());
+        int min = Integer.parseInt(minTxt.getText());
 
+        Inventory.addProduct(new Product(id, name, price, inv, min, max));
+
+        switcher.screen("/View/mainForm.fxml", event);
+  
     }
 
     @FXML
