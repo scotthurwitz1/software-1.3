@@ -38,7 +38,7 @@
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="partSearchTxt" text="Search by Part ID or Name" />
+                              <TextField fx:id="partSearchTxt" onAction="#onActionPartSearch" text="Search by Part ID or Name" />
                            </children>
                         </HBox>
                         <TableView fx:id="partsTbl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0">

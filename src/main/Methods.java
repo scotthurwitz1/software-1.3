@@ -66,20 +66,33 @@ public class Methods {
         return filteredParts;
     }
     
-    public static ObservableList<Part> filter(String name)
+    public static ObservableList<Part> filterParts(String name)
     {   
-        
         //deals with repeating info if run multiple times
         if(!filteredParts.isEmpty())
             filteredParts.clear();
         
-        for(Part part : Inventory.getAllParts())
+        try
         {
-            if(part.getName().contains(name))
-                filteredParts.add(part);
+           int id = Integer.parseInt(name);
+           for(Part part : Inventory.getAllParts())
+            {
+                if(part.getId() == id)
+                    filteredParts.add(part);
+            }
+            return filteredParts;
+        }
+        catch(NumberFormatException e)
+        {
+            for(Part part : Inventory.getAllParts())
+            {
+                if(part.getName().contains(name))
+                    filteredParts.add(part);
+            }
+
+            return filteredParts;
         }
         
-        return filteredParts;
     }
         
 }

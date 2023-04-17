@@ -88,6 +88,8 @@ public class MainFormController implements Initializable {
 
     @FXML
     private TextField searchProdTxt;
+    
+    
 
     @FXML
     void onActionAddPart(ActionEvent event) throws IOException {
@@ -105,6 +107,7 @@ public class MainFormController implements Initializable {
 
     @FXML
     void onActionDeletePart(ActionEvent event) {
+        //error handling?
         Part part = partsTbl.getSelectionModel().getSelectedItem();
         Inventory.deletePart(part);
     }
@@ -112,6 +115,12 @@ public class MainFormController implements Initializable {
     @FXML
     void onActionDeleteProduct(ActionEvent event) {
 
+    }
+    
+    @FXML
+    void onActionPartSearch(ActionEvent event) {
+        partsTbl.setItems(Methods.filterParts(partSearchTxt.getText()));        
+        partSearchTxt.setText("");
     }
 
     @FXML
