@@ -6,6 +6,8 @@ import Model.Product;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,12 +15,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import static main.Methods.update;
 import main.Switcher;
 
 public class ModifyProductFormController implements Initializable {
     
     Switcher switcher = new Switcher();
+    private static ObservableList<Part> associatedParts1 = FXCollections.observableArrayList();
+    public static ObservableList<Part> associatedParts2 = FXCollections.observableArrayList();
 
     @FXML
     private Button addBtn;
@@ -120,8 +125,10 @@ public class ModifyProductFormController implements Initializable {
         float price = Float.parseFloat(priceTxt.getText());
         int max = Integer.parseInt(maxTxt.getText());
         int min = Integer.parseInt(minTxt.getText());
+        ObservableList<Part> parts = associatedParts1;
+
         
-        Product prod1 = new Product(id, name, price, inv, min, max);
+        Product prod1 = new Product(id, name, price, inv, min, max, parts);
         update(id, prod1);
         
         switcher.screen("/View/mainForm.fxml", event);
@@ -133,19 +140,39 @@ public class ModifyProductFormController implements Initializable {
 
     }
     
-        public void sendProd(Product prod)
+    public void sendProd(Product prod)
     {
         idTxt.setText(String.valueOf(prod.getId()));
         nameTxt.setText(prod.getName());
         invTxt.setText(String.valueOf(prod.getStock()));
         priceTxt.setText(String.valueOf(prod.getPrice()));
         maxTxt.setText(String.valueOf(prod.getMax()));
-        minTxt.setText(String.valueOf(prod.getMin()));   
+        minTxt.setText(String.valueOf(prod.getMin()));
+        associatedParts1 = prod.getAllAssociatedParts();
 
     }
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        
+          //        Parts Table Methods
+        partListTbl.setItems(Inventory.getAllParts());
+
+//        partsTbl.setItems(Methods.filter("p"));
+                 
+        partListIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        partListPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        partListInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        partListNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        
+        relPartTbl.setItems(associatedParts1);
+
+//        partsTbl.setItems(Methods.filter("p"));
+                 
+        relPartIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        relPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        relPartInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        relPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
      
     }

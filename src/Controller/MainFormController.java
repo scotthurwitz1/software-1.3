@@ -159,7 +159,7 @@ public class MainFormController implements Initializable {
             loader.setLocation(getClass().getResource("/View/addPartForm.fxml"));
             loader.load();
 
-            AddPartFormController MPFController = loader.getController();
+            ModifyPartFormController MPFController = loader.getController();
             MPFController.sendPart(partsTbl.getSelectionModel().getSelectedItem());
 
             stage = (Stage)((Button)event.getSource()).getScene().getWindow();

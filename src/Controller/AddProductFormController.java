@@ -8,6 +8,8 @@ import Model.Product;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,6 +27,7 @@ import main.Switcher;
 public class AddProductFormController implements Initializable {
     
     Switcher switcher = new Switcher();
+    private static ObservableList<Part> associatedParts1 = FXCollections.observableArrayList();
 
     @FXML
     private Button addBtn;
@@ -98,6 +101,40 @@ public class AddProductFormController implements Initializable {
     @FXML
     void onActionAddPart(ActionEvent event) {
         
+        Part part = partListTbl.getSelectionModel().getSelectedItem();
+        boolean outsourced;
+        String machineId1 = null;
+        String companyName1 = null;
+        
+        if(part instanceof InHouse)
+        {
+            machineId1 = String.valueOf(((InHouse) part).getMachineId());
+            outsourced = false;
+            
+        }
+        else
+        {
+            companyName1 = String.valueOf(((Outsourced) part).getCompanyName());
+            outsourced = true;
+            
+        }
+
+        int id = Integer.parseInt((String.valueOf(part.getId())));
+        String name = part.getName();
+        int inv = Integer.parseInt(String.valueOf(part.getStock()));
+        float price = Float.parseFloat(String.valueOf(part.getPrice()));
+        int max = Integer.parseInt(String.valueOf(part.getMax()));
+        int min = Integer.parseInt(String.valueOf(part.getMin())); 
+            
+        if (outsourced = false){
+            int machineId = Integer.parseInt(machineId1);
+            associatedParts1.add(new InHouse(id, name, price, inv, min, max, machineId));
+        }
+        else {
+            String companyName = companyName1;
+            associatedParts1.add(new Outsourced(id, name, price, inv, min, max, companyName));
+        }
+        
     }
 
     @FXML
@@ -127,8 +164,9 @@ public class AddProductFormController implements Initializable {
         float price = Float.parseFloat(priceTxt.getText());
         int max = Integer.parseInt(maxTxt.getText());
         int min = Integer.parseInt(minTxt.getText());
+        ObservableList<Part> parts = associatedParts1;
 
-        Inventory.addProduct(new Product(id, name, price, inv, min, max));
+        Inventory.addProduct(new Product(id, name, price, inv, min, max, parts));
 
         switcher.screen("/View/mainForm.fxml", event);
   
@@ -165,6 +203,7 @@ public class AddProductFormController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
            idTxt.setDisable(true);
            
+           
            //        Parts Table Methods
         partListTbl.setItems(Inventory.getAllParts());
 
@@ -174,6 +213,16 @@ public class AddProductFormController implements Initializable {
         partListPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
         partListInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partListNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        
+           //        Associated Parts Table Methods
+        relPartTbl.setItems(associatedParts1);
+
+//        partsTbl.setItems(Methods.filter("p"));
+                 
+        relPartIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        relPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        relPartInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        relPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         
         
     }

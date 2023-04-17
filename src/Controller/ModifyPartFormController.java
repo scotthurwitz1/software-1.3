@@ -8,6 +8,7 @@ import Model.Product;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -101,6 +102,7 @@ public class ModifyPartFormController implements Initializable {
         float price = Float.parseFloat(priceTxt.getText());
         int max = Integer.parseInt(maxTxt.getText());
         int min = Integer.parseInt(minTxt.getText());
+     
         
         if (outsourced = false){
             int machineId = Integer.parseInt(machineIdTxt.getText());

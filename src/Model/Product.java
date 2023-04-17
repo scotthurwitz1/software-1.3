@@ -10,16 +10,17 @@ public class Product {
     private int stock;
     private int min;
     private int max;
-    private ObservableList<Part> associatedParts;
+    private static ObservableList<Part> associatedParts;
 
     // Declare Methods
-    public Product(int id, String name, double price, int stock, int min, int max){
+    public Product(int id, String name, double price, int stock, int min, int max, ObservableList<Part> parts){
         this.id = id;
         this.name = name;
         this.price = price;
         this.stock = stock;
         this.min = min;
         this.max = max;
+        this.associatedParts = parts;
     }
 
     public void setId(int id) {
@@ -70,13 +71,16 @@ public class Product {
         return max;
     }
 
-    public void addAssociatedPart(Part part){}
+    public static void addAssociatedPart(Part part){
+        associatedParts.add(part);
+    }
     
     
-    public boolean deleteAssociatedPart(Part selectedAssociatedPart){
+    public static boolean deleteAssociatedPart(Part selectedAssociatedPart){
         return false;
     }
-    public ObservableList<Part> getAllAssociatedParts(){
-        return null;
+    
+    public static ObservableList<Part> getAllAssociatedParts(){
+        return associatedParts;
     }
 }
