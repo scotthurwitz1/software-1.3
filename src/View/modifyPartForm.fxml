@@ -24,11 +24,11 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Text>
-            <RadioButton fx:id="inHouseBtn" mnemonicParsing="false" text="In-House">
+            <RadioButton fx:id="inHouseBtn" mnemonicParsing="false" onAction="#onActionInhouseButton" text="In-House">
                <toggleGroup>
                   <ToggleGroup fx:id="sourceTG" />
                </toggleGroup></RadioButton>
-            <RadioButton fx:id="outsourcedBtn" layoutX="72.0" layoutY="93.0" mnemonicParsing="false" text="Outsourced" toggleGroup="$sourceTG" />
+            <RadioButton fx:id="outsourcedBtn" layoutX="72.0" layoutY="93.0" mnemonicParsing="false" onAction="#onActionOutsourcedButton" text="Outsourced" toggleGroup="$sourceTG" />
          </children>
       </HBox>
       <VBox layoutX="107.0" layoutY="165.0" prefHeight="400.0" prefWidth="500.0" spacing="20.0">
