@@ -82,6 +82,11 @@ public class Methods {
         return filteredParts;
     }
     
+    public static ObservableList<Product> getAllFilteredProducts()
+    {
+        return filteredProds;
+    }
+    
     public static ObservableList<Part> filterParts(String name)
     {   
         //deals with repeating info if run multiple times

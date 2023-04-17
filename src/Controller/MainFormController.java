@@ -23,6 +23,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import main.Methods;
+import static main.Methods.getAllFilteredParts;
+import static main.Methods.getAllFilteredProducts;
 import static main.Methods.selectPart;
 import main.Switcher;
 
@@ -119,12 +121,26 @@ public class MainFormController implements Initializable {
     
     @FXML
     void onActionPartSearch(ActionEvent event) {
-        partsTbl.setItems(Methods.filterParts(partSearchTxt.getText()));        
+        partsTbl.setItems(Methods.filterParts(partSearchTxt.getText()));
+        if (getAllFilteredParts().isEmpty())
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setContentText("Part not found.");
+            alert.showAndWait();
+        }
     }
     
     @FXML
     void onActionProdSearch(ActionEvent event) {
-        prodTbl.setItems(Methods.filterProducts(searchProdTxt.getText()));        
+        prodTbl.setItems(Methods.filterProducts(searchProdTxt.getText()));
+        if (getAllFilteredProducts().isEmpty())
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setContentText("Product not found.");
+            alert.showAndWait();
+        }
     }
 
     @FXML
