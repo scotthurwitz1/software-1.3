@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 public class Methods {
     
     private static ObservableList<Part> filteredParts = FXCollections.observableArrayList();
+    private static ObservableList<Product> filteredProds = FXCollections.observableArrayList();
         
     public static boolean search(int id) {
      
@@ -106,6 +107,35 @@ public class Methods {
             }
 
             return filteredParts;
+        }
+        
+    }
+    
+    public static ObservableList<Product> filterProducts(String name)
+    {   
+        //deals with repeating info if run multiple times
+        if(!filteredProds.isEmpty())
+            filteredProds.clear();
+        
+        try
+        {
+           int id = Integer.parseInt(name);
+           for(Product prod : Inventory.getAllProducts())
+            {
+                if(prod.getId() == id)
+                    filteredProds.add(prod);
+            }
+            return filteredProds;
+        }
+        catch(NumberFormatException e)
+        {
+            for(Product prod : Inventory.getAllProducts())
+            {
+                if(prod.getName().contains(name))
+                    filteredProds.add(prod);
+            }
+
+            return filteredProds;
         }
         
     }

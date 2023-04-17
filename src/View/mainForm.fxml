@@ -67,7 +67,7 @@
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="searchProdTxt" text="Search by Product ID or Name" />
+                              <TextField fx:id="searchProdTxt" onAction="#onActionProdSearch" prefHeight="26.0" prefWidth="127.0" text="Search by Product ID or Name" />
                            </children>
                         </HBox>
                         <TableView fx:id="prodTbl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0">

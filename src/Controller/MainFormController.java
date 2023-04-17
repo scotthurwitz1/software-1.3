@@ -120,7 +120,11 @@ public class MainFormController implements Initializable {
     @FXML
     void onActionPartSearch(ActionEvent event) {
         partsTbl.setItems(Methods.filterParts(partSearchTxt.getText()));        
-        partSearchTxt.setText("");
+    }
+    
+    @FXML
+    void onActionProdSearch(ActionEvent event) {
+        prodTbl.setItems(Methods.filterProducts(searchProdTxt.getText()));        
     }
 
     @FXML
