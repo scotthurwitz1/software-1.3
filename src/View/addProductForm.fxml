@@ -26,7 +26,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="searchTxt" text="Search by Part ID or Name" />
+                  <TextField fx:id="searchTxt" onAction="#onActionPartSearch" text="Search by Part ID or Name" />
                </children>
             </HBox>
             <HBox prefWidth="1120.0" spacing="100.0">

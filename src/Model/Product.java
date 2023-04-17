@@ -10,6 +10,7 @@ public class Product {
     private int stock;
     private int min;
     private int max;
+    private ObservableList<Part> associatedParts;
 
     // Declare Methods
     public Product(int id, String name, double price, int stock, int min, int max){
@@ -70,6 +71,8 @@ public class Product {
     }
 
     public void addAssociatedPart(Part part){}
+    
+    
     public boolean deleteAssociatedPart(Part selectedAssociatedPart){
         return false;
     }
