@@ -103,35 +103,33 @@ public class AddProductFormController implements Initializable {
         
         Part part = partListTbl.getSelectionModel().getSelectedItem();
         boolean outsourced;
-        String machineId1 = null;
-        String companyName1 = null;
+        int machineId = 0;
+        String companyName = null;
         
         if(part instanceof InHouse)
         {
-            machineId1 = String.valueOf(((InHouse) part).getMachineId());
+            machineId = ((InHouse) part).getMachineId();
             outsourced = false;
             
         }
         else
         {
-            companyName1 = String.valueOf(((Outsourced) part).getCompanyName());
+            companyName = ((Outsourced) part).getCompanyName();
             outsourced = true;
             
         }
 
-        int id = Integer.parseInt((String.valueOf(part.getId())));
+        int id = part.getId();
         String name = part.getName();
-        int inv = Integer.parseInt(String.valueOf(part.getStock()));
-        float price = Float.parseFloat(String.valueOf(part.getPrice()));
-        int max = Integer.parseInt(String.valueOf(part.getMax()));
-        int min = Integer.parseInt(String.valueOf(part.getMin())); 
+        int inv = part.getStock();
+        double price = part.getPrice();
+        int max = part.getMax();
+        int min = part.getMin(); 
             
         if (outsourced = false){
-            int machineId = Integer.parseInt(machineId1);
             associatedParts1.add(new InHouse(id, name, price, inv, min, max, machineId));
         }
         else {
-            String companyName = companyName1;
             associatedParts1.add(new Outsourced(id, name, price, inv, min, max, companyName));
         }
         
@@ -177,15 +175,6 @@ public class AddProductFormController implements Initializable {
 
     }
     
-    public void sendProd(Product prod)
-    {
-        idTxt.setText(String.valueOf(prod.getId()));
-        nameTxt.setText(prod.getName());
-        invTxt.setText(String.valueOf(prod.getStock()));
-        priceTxt.setText(String.valueOf(prod.getPrice()));
-        maxTxt.setText(String.valueOf(prod.getMax()));
-        minTxt.setText(String.valueOf(prod.getMin()));     
-    }
     
     @FXML
     void onActionPartSearch(ActionEvent event) {

@@ -1,6 +1,8 @@
 package Controller;
 
+import Model.InHouse;
 import Model.Inventory;
+import Model.Outsourced;
 import Model.Part;
 import Model.Product;
 import java.io.IOException;
@@ -16,14 +18,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import static main.Methods.selectProd;
 import static main.Methods.update;
 import main.Switcher;
 
 public class ModifyProductFormController implements Initializable {
     
     Switcher switcher = new Switcher();
-    private static ObservableList<Part> associatedParts1 = FXCollections.observableArrayList();
-    public static ObservableList<Part> associatedParts2 = FXCollections.observableArrayList();
+    private ObservableList<Part> associatedParts3 = FXCollections.observableArrayList();
 
     @FXML
     private Button addBtn;
@@ -93,9 +95,52 @@ public class ModifyProductFormController implements Initializable {
 
     @FXML
     private TextField searchTxt;
+    
+    @FXML
+    void onActionSearchTxt (ActionEvent event)
+    {
+        
+    }
 
     @FXML
     void onActionAddPart(ActionEvent event) {
+        
+        Part part = partListTbl.getSelectionModel().getSelectedItem();
+        boolean outsourced;
+        int machineId = 0;
+        String companyName = null;
+        
+        if(part instanceof InHouse)
+        {
+            machineId = ((InHouse) part).getMachineId();
+            outsourced = false;
+            
+        }
+        else
+        {
+            companyName = ((Outsourced) part).getCompanyName();
+            outsourced = true;
+            
+        }
+
+        int id = part.getId();
+        String name = part.getName();
+        int inv = part.getStock();
+        double price = part.getPrice();
+        int max = part.getMax();
+        int min = part.getMin(); 
+            
+        if (outsourced = false){
+            associatedParts3.add(new InHouse(id, name, price, inv, min, max, machineId));
+            System.out.println("added");
+            System.out.println(associatedParts3);
+        }
+        else {
+            associatedParts3.add(new Outsourced(id, name, price, inv, min, max, companyName));
+            System.out.println("added");
+            System.out.println(associatedParts3);
+        }
+        
 
     }
 
@@ -125,11 +170,17 @@ public class ModifyProductFormController implements Initializable {
         float price = Float.parseFloat(priceTxt.getText());
         int max = Integer.parseInt(maxTxt.getText());
         int min = Integer.parseInt(minTxt.getText());
-        ObservableList<Part> parts = associatedParts1;
-
         
-        Product prod1 = new Product(id, name, price, inv, min, max, parts);
+        Product prod1 = new Product(id, name, price, inv, min, max);
+        
+        for(Part part : associatedParts3)
+            {
+                prod1.addAssociatedPart(part);
+            }
+        
         update(id, prod1);
+        
+        System.out.println(selectProd(id).getAllAssociatedParts());
         
         switcher.screen("/View/mainForm.fxml", event);
 
@@ -148,12 +199,21 @@ public class ModifyProductFormController implements Initializable {
         priceTxt.setText(String.valueOf(prod.getPrice()));
         maxTxt.setText(String.valueOf(prod.getMax()));
         minTxt.setText(String.valueOf(prod.getMin()));
-        associatedParts1 = prod.getAllAssociatedParts();
+        
+        for(Part part : prod.getAllAssociatedParts())
+            {
+                associatedParts3.add(part);
+            }
+        
+        System.out.println(associatedParts3);
 
     }
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        
+        if(!associatedParts3.isEmpty())
+            associatedParts3.clear();
         
           //        Parts Table Methods
         partListTbl.setItems(Inventory.getAllParts());
@@ -165,7 +225,7 @@ public class ModifyProductFormController implements Initializable {
         partListInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partListNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         
-        relPartTbl.setItems(associatedParts1);
+        relPartTbl.setItems(associatedParts3);
 
 //        partsTbl.setItems(Methods.filter("p"));
                  

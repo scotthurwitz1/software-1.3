@@ -21,7 +21,7 @@ public class Methods {
     public static int partId = 0;
     public static int prodId = 0;
         
-    public static boolean search(int id) {
+    public static boolean searchParts(int id) {
      
         for(Part part : Inventory.getAllParts()){
             if(part.getId() == id)
@@ -73,6 +73,17 @@ public class Methods {
         {
             if(part.getId() == id)
                 return part;
+        }
+        
+        return null;
+    }
+    
+    public static Product selectProd(int id)
+    {
+        for(Product prod : Inventory.getAllProducts())
+        {
+            if(prod.getId() == id)
+                return prod;
         }
         
         return null;
