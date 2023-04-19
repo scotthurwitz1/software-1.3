@@ -102,36 +102,8 @@ public class AddProductFormController implements Initializable {
     void onActionAddPart(ActionEvent event) {
         
         Part part = partListTbl.getSelectionModel().getSelectedItem();
-        boolean outsourced;
-        int machineId = 0;
-        String companyName = null;
-        
-        if(part instanceof InHouse)
-        {
-            machineId = ((InHouse) part).getMachineId();
-            outsourced = false;
-            
-        }
-        else
-        {
-            companyName = ((Outsourced) part).getCompanyName();
-            outsourced = true;
-            
-        }
-
-        int id = part.getId();
-        String name = part.getName();
-        int inv = part.getStock();
-        double price = part.getPrice();
-        int max = part.getMax();
-        int min = part.getMin(); 
-            
-        if (outsourced = false){
-            associatedParts1.add(new InHouse(id, name, price, inv, min, max, machineId));
-        }
-        else {
-            associatedParts1.add(new Outsourced(id, name, price, inv, min, max, companyName));
-        }
+        associatedParts1.add(part);
+        System.out.println(associatedParts1);
         
     }
 
@@ -162,9 +134,16 @@ public class AddProductFormController implements Initializable {
         float price = Float.parseFloat(priceTxt.getText());
         int max = Integer.parseInt(maxTxt.getText());
         int min = Integer.parseInt(minTxt.getText());
-        ObservableList<Part> parts = associatedParts1;
+        
 
-        Inventory.addProduct(new Product(id, name, price, inv, min, max, parts));
+        Product prod1 = new Product(id, name, price, inv, min, max);
+        
+        for(Part part : associatedParts1)
+            {
+                prod1.addAssociatedPart(part);
+            }
+        
+        Inventory.addProduct(prod1);
 
         switcher.screen("/View/mainForm.fxml", event);
   

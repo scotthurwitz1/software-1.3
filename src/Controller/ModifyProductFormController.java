@@ -25,7 +25,7 @@ import main.Switcher;
 public class ModifyProductFormController implements Initializable {
     
     Switcher switcher = new Switcher();
-    private ObservableList<Part> associatedParts3 = FXCollections.observableArrayList();
+    private ObservableList<Part> associatedParts1 = FXCollections.observableArrayList();
 
     @FXML
     private Button addBtn;
@@ -106,42 +106,10 @@ public class ModifyProductFormController implements Initializable {
     void onActionAddPart(ActionEvent event) {
         
         Part part = partListTbl.getSelectionModel().getSelectedItem();
-        boolean outsourced;
-        int machineId = 0;
-        String companyName = null;
+        associatedParts1.add(part);
+        System.out.println("part added " + associatedParts1);
         
-        if(part instanceof InHouse)
-        {
-            machineId = ((InHouse) part).getMachineId();
-            outsourced = false;
-            
-        }
-        else
-        {
-            companyName = ((Outsourced) part).getCompanyName();
-            outsourced = true;
-            
-        }
-
-        int id = part.getId();
-        String name = part.getName();
-        int inv = part.getStock();
-        double price = part.getPrice();
-        int max = part.getMax();
-        int min = part.getMin(); 
-            
-        if (outsourced = false){
-            associatedParts3.add(new InHouse(id, name, price, inv, min, max, machineId));
-            System.out.println("added");
-            System.out.println(associatedParts3);
-        }
-        else {
-            associatedParts3.add(new Outsourced(id, name, price, inv, min, max, companyName));
-            System.out.println("added");
-            System.out.println(associatedParts3);
-        }
-        
-
+                
     }
 
     @FXML
@@ -166,21 +134,22 @@ public class ModifyProductFormController implements Initializable {
         
         int id = Integer.parseInt(idTxt.getText());
         String name = nameTxt.getText();
+        double price = Double.parseDouble(priceTxt.getText());
         int inv = Integer.parseInt(invTxt.getText());
-        float price = Float.parseFloat(priceTxt.getText());
         int max = Integer.parseInt(maxTxt.getText());
         int min = Integer.parseInt(minTxt.getText());
         
-        Product prod1 = new Product(id, name, price, inv, min, max);
+        Product prod = new Product(id, name, price, inv, max, min);
         
-        for(Part part : associatedParts3)
-            {
-                prod1.addAssociatedPart(part);
-            }
+        for(Part part : associatedParts1){
+          
+            prod.addAssociatedPart(part);
+        }
         
-        update(id, prod1);
+        System.out.println(id);
+//        System.out.println(prod);
         
-        System.out.println(selectProd(id).getAllAssociatedParts());
+        update(id, prod);
         
         switcher.screen("/View/mainForm.fxml", event);
 
@@ -199,23 +168,21 @@ public class ModifyProductFormController implements Initializable {
         priceTxt.setText(String.valueOf(prod.getPrice()));
         maxTxt.setText(String.valueOf(prod.getMax()));
         minTxt.setText(String.valueOf(prod.getMin()));
+       
+        for(Part part : prod.getAllAssociatedParts()){
+            associatedParts1.add(part);
+        }
         
-        for(Part part : prod.getAllAssociatedParts())
-            {
-                associatedParts3.add(part);
-            }
-        
-        System.out.println(associatedParts3);
+        System.out.println("prod sent, ass parts = " + associatedParts1);
 
     }
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         
-        if(!associatedParts3.isEmpty())
-            associatedParts3.clear();
-        
-          //        Parts Table Methods
+        idTxt.setDisable(true);
+           
+           //        Parts Table Methods
         partListTbl.setItems(Inventory.getAllParts());
 
 //        partsTbl.setItems(Methods.filter("p"));
@@ -225,7 +192,8 @@ public class ModifyProductFormController implements Initializable {
         partListInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partListNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         
-        relPartTbl.setItems(associatedParts3);
+           //        Associated Parts Table Methods
+        relPartTbl.setItems(associatedParts1);
 
 //        partsTbl.setItems(Methods.filter("p"));
                  
@@ -233,6 +201,8 @@ public class ModifyProductFormController implements Initializable {
         relPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
         relPartInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         relPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        
+        System.out.println("initialized");
 
      
     }

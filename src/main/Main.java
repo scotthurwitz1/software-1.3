@@ -38,9 +38,9 @@ public class Main extends Application{
         //outsourced 
         
         // sample product data
-        Product prod1 = new Product(0, "toy", 10.5, 0, 10, 100);
-        Product prod2 = new Product(1, "food", 10.5, 0, 10, 100);
-        Product prod3 = new Product(2, "straw", 10.5, 0, 10, 100);
+        Product prod1 = new Product(100, "toy", 10.5, 0, 10, 100);
+        Product prod2 = new Product(101, "food", 10.5, 0, 10, 100);
+        Product prod3 = new Product(202, "straw", 10.5, 0, 10, 100);
         
         Inventory.addPart(part1);
         Inventory.addPart(part2);

@@ -11,7 +11,7 @@ public class Product {
     private int stock;
     private int min;
     private int max;
-    private static ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
 
     // Declare Methods
     public Product(int id, String name, double price, int stock, int min, int max){
@@ -71,16 +71,16 @@ public class Product {
         return max;
     }
 
-    public static void addAssociatedPart(Part part){
+    public void addAssociatedPart(Part part){
         associatedParts.add(part);
     }
     
     
-    public static boolean deleteAssociatedPart(Part selectedAssociatedPart){
+    public boolean deleteAssociatedPart(Part selectedAssociatedPart){
         return false;
     }
     
-    public static ObservableList<Part> getAllAssociatedParts(){
+    public ObservableList<Part> getAllAssociatedParts(){
         return associatedParts;
     }
 }
