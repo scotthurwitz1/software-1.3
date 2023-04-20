@@ -6,6 +6,7 @@ import Model.Part;
 import Model.Product;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -108,10 +110,16 @@ public class MainFormController implements Initializable {
     }
 
     @FXML
-    void onActionDeletePart(ActionEvent event) {
+    void onActionDeletePart(ActionEvent event) throws IOException {
         //error handling?
         Part part = partsTbl.getSelectionModel().getSelectedItem();
-        Inventory.deletePart(part);
+        
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Confirm delete part?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK)
+        {
+            Inventory.deletePart(part);
+        }  
     }
 
     @FXML
@@ -124,10 +132,14 @@ public class MainFormController implements Initializable {
             alert.setTitle("Error Dialog");
             alert.setContentText("The user should not delete a product that has a part associated with it.");
             alert.showAndWait();
-        }
+        } 
         else 
-            Inventory.deleteProduct(prod);
-
+        {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Confirm delete part?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.isPresent() && result.get() == ButtonType.OK)
+                Inventory.deleteProduct(prod);
+        }
     }
     
     @FXML
