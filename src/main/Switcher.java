@@ -18,6 +18,12 @@ import javafx.stage.Stage;
  */
 public class Switcher {
     
+    /**
+     *
+     * @param string
+     * @param event
+     * @throws IOException
+     */
     public void screen(String string, ActionEvent event) throws IOException{
         
         Stage stage;

@@ -22,6 +22,10 @@ import static main.Methods.getAllFilteredParts;
 import static main.Methods.partId;
 import main.Switcher;
 
+/**
+ *
+ * @author scott
+ */
 public class AddPartFormController implements Initializable {
     
     Switcher switcher = new Switcher();
@@ -139,28 +143,11 @@ public class AddPartFormController implements Initializable {
         }
     }
     
-    public void sendPart(Part part)
-    {
-        if(part instanceof InHouse)
-        {
-            machineIdTxt.setText(String.valueOf(((InHouse) part).getMachineId()));
-            inHouseBtn.setSelected(true);
-        }
-        else
-        {
-            machineIdLbl.setText("Company Name");
-            machineIdTxt.setText(((Outsourced) part).getCompanyName());
-            outsourcedBtn.setSelected(true);
-        }
-
-            idTxt.setText(String.valueOf(part.getId()));
-            nameTxt.setText(part.getName());
-            invTxt.setText(String.valueOf(part.getStock()));
-            priceTxt.setText(String.valueOf(part.getPrice()));
-            maxTxt.setText(String.valueOf(part.getMax()));
-            minTxt.setText(String.valueOf(part.getMin()));     
-    }
-    
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         idTxt.setDisable(true);

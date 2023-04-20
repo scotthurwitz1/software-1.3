@@ -24,6 +24,10 @@ import static main.Methods.getAllFilteredParts;
 import static main.Methods.prodId;
 import main.Switcher;
 
+/**
+ *
+ * @author scott
+ */
 public class AddProductFormController implements Initializable {
     
     Switcher switcher = new Switcher();
@@ -247,6 +251,11 @@ public class AddProductFormController implements Initializable {
         }
     }
     
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
            idTxt.setDisable(true);

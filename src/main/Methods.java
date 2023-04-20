@@ -12,15 +12,28 @@ import javafx.collections.ObservableList;
 
 /**
  *
- * @author scottsmac
+ * @author scott
  */
 public class Methods {
     
     private static ObservableList<Part> filteredParts = FXCollections.observableArrayList();
     private static ObservableList<Product> filteredProds = FXCollections.observableArrayList();
+
+    /**
+     *
+     */
     public static int partId = 0;
+
+    /**
+     *
+     */
     public static int prodId = 0;
         
+    /**
+     *
+     * @param id to search
+     * @return check
+     */
     public static boolean searchParts(int id) {
      
         for(Part part : Inventory.getAllParts()){
@@ -30,6 +43,12 @@ public class Methods {
         return false;
     }
     
+    /**
+     *
+     * @param id to update
+     * @param part to update
+     * @return check
+     */
     public static boolean update(int id, Part part){
         int index = -1;
         for(Part part1 : Inventory.getAllParts())
@@ -44,6 +63,12 @@ public class Methods {
         return false;
     }
     
+    /**
+     *
+     * @param id to update
+     * @param prod to update
+     * @return check
+     */
     public static boolean update(int id, Product prod){
         int index = -1;
         for(Product prod1 : Inventory.getAllProducts())
@@ -58,6 +83,11 @@ public class Methods {
         return false;
     }
     
+    /**
+     *
+     * @param id to delete
+     * @return check
+     */
     public static boolean deletePart(int id){
         
         for(Part part : Inventory.getAllParts()){
@@ -67,6 +97,11 @@ public class Methods {
         return false;
     }
     
+    /**
+     *
+     * @param id to delete
+     * @return check
+     */
     public static boolean deleteProduct(int id){
         
         for(Product prod : Inventory.getAllProducts()){
@@ -76,6 +111,11 @@ public class Methods {
         return false;
     }
     
+    /**
+     *
+     * @param id to select
+     * @return part
+     */
     public static Part selectPart(int id)
     {
         for(Part part : Inventory.getAllParts())
@@ -87,6 +127,11 @@ public class Methods {
         return null;
     }
     
+    /**
+     *
+     * @param id to select
+     * @return product
+     */
     public static Product selectProd(int id)
     {
         for(Product prod : Inventory.getAllProducts())
@@ -98,17 +143,29 @@ public class Methods {
         return null;
     }
     
-    
+    /**
+     *
+     * @return filtered parts
+     */
     public static ObservableList<Part> getAllFilteredParts()
     {
         return filteredParts;
     }
     
+    /**
+     *
+     * @return filtered products
+     */
     public static ObservableList<Product> getAllFilteredProducts()
     {
         return filteredProds;
     }
     
+    /**
+     *
+     * @param name to filter
+     * @return filtered parts
+     */
     public static ObservableList<Part> filterParts(String name)
     {   
         //deals with repeating info if run multiple times
@@ -138,6 +195,11 @@ public class Methods {
         
     }
     
+    /**
+     *
+     * @param name to filter
+     * @return filtered products
+     */
     public static ObservableList<Product> filterProducts(String name)
     {   
         //deals with repeating info if run multiple times

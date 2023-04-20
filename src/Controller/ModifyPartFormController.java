@@ -24,6 +24,10 @@ import javafx.stage.Stage;
 import static main.Methods.update;
 import main.Switcher;
 
+/**
+ *
+ * @author scott
+ */
 public class ModifyPartFormController implements Initializable {
     
     Switcher switcher = new Switcher();
@@ -70,7 +74,6 @@ public class ModifyPartFormController implements Initializable {
     @FXML
     private ToggleGroup sourceTG;
     
-      // Handle In house / outsourced button menue changes
     @FXML
     void onActionOutsourcedButton(ActionEvent event){
         
@@ -145,6 +148,10 @@ public class ModifyPartFormController implements Initializable {
         }
     }
     
+    /**
+     *
+     * @param part
+     */
     public void sendPart(Part part)
     {
         if(part instanceof InHouse)
@@ -167,7 +174,11 @@ public class ModifyPartFormController implements Initializable {
             minTxt.setText(String.valueOf(part.getMin()));     
     }
     
-    
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

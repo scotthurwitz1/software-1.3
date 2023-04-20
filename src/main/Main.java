@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author scottsmac
+ * @author scotts
  */
 public class Main extends Application{
 
@@ -53,6 +53,11 @@ public class Main extends Application{
         launch(args);
     }
 
+    /**
+     *
+     * @param stage
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/View/mainForm.fxml"));

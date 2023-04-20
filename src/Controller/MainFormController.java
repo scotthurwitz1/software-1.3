@@ -30,6 +30,10 @@ import static main.Methods.getAllFilteredProducts;
 import static main.Methods.selectPart;
 import main.Switcher;
 
+/**
+ *
+ * @author scott
+ */
 public class MainFormController implements Initializable {
     
     Stage stage;
@@ -254,6 +258,11 @@ public class MainFormController implements Initializable {
         
     }
     
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         

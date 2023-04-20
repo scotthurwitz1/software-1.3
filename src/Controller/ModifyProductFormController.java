@@ -25,6 +25,10 @@ import static main.Methods.selectProd;
 import static main.Methods.update;
 import main.Switcher;
 
+/**
+ *
+ * @author scott
+ */
 public class ModifyProductFormController implements Initializable {
     
     Switcher switcher = new Switcher();
@@ -238,6 +242,10 @@ public class ModifyProductFormController implements Initializable {
         }
     }
     
+    /**
+     *
+     * @param prod
+     */
     public void sendProd(Product prod)
     {
         idTxt.setText(String.valueOf(prod.getId()));
@@ -253,6 +261,11 @@ public class ModifyProductFormController implements Initializable {
 
     }
     
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         
