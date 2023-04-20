@@ -121,7 +121,9 @@ public class ModifyProductFormController implements Initializable {
     }
 
     @FXML
-    void onActionCancelMod(ActionEvent event) {
+    void onActionCancelMod(ActionEvent event) throws IOException {
+        
+        switcher.screen("/View/mainForm.fxml", event);
 
     }
 
@@ -167,7 +169,28 @@ public class ModifyProductFormController implements Initializable {
     }
 
     @FXML
-    void onActionSaveToMain(ActionEvent event) {
+    void onActionSaveToMain(ActionEvent event) throws IOException {
+        
+        int id = Integer.parseInt(idTxt.getText());
+        String name = nameTxt.getText();
+        double price = Double.parseDouble(priceTxt.getText());
+        int inv = Integer.parseInt(invTxt.getText());
+        int max = Integer.parseInt(maxTxt.getText());
+        int min = Integer.parseInt(minTxt.getText());
+        
+        Product prod = new Product(id, name, price, inv, max, min);
+        
+        for(Part part : associatedParts1){
+          
+            prod.addAssociatedPart(part);
+        }
+        
+        System.out.println(id);
+//        System.out.println(prod);
+        
+        update(id, prod);
+        
+        switcher.screen("/View/mainForm.fxml", event);
 
     }
     

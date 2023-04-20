@@ -18,6 +18,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import static main.Methods.getAllFilteredParts;
 import static main.Methods.partId;
 import main.Switcher;
 
@@ -107,16 +108,33 @@ public class AddPartFormController implements Initializable {
         int max = Integer.parseInt(maxTxt.getText());
         int min = Integer.parseInt(minTxt.getText());
         
-        if (outsourced = false){
-            int machineId = Integer.parseInt(machineIdTxt.getText());
-            Inventory.addPart(new InHouse(id, name, price, inv, min, max, machineId));
-        }
-        else {
-            String companyName = machineIdTxt.getText();
-            Inventory.addPart(new Outsourced(id, name, price, inv, min, max, companyName));
-        }
+        if (max <= min)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("Min value should be less than max.");
+            alert.showAndWait();
+        } 
         
-        switcher.screen("/View/mainForm.fxml", event);
+        else if (inv < min || inv > max)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("Inv should be between min and max");
+            alert.showAndWait();
+        } 
+        else {
+            if (outsourced = false){
+                int machineId = Integer.parseInt(machineIdTxt.getText());
+                Inventory.addPart(new InHouse(id, name, price, inv, min, max, machineId));
+            }
+            else {
+                String companyName = machineIdTxt.getText();
+                Inventory.addPart(new Outsourced(id, name, price, inv, min, max, companyName));
+            }
+
+            switcher.screen("/View/mainForm.fxml", event);
+        }
         
     }
     

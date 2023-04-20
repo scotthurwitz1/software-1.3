@@ -107,7 +107,9 @@ public class AddProductFormController implements Initializable {
     }
 
     @FXML
-    void onActionCancel(ActionEvent event) {
+    void onActionCancel(ActionEvent event) throws IOException {
+        
+        switcher.screen("/View/mainForm.fxml", event);
 
     }
 
@@ -152,7 +154,28 @@ public class AddProductFormController implements Initializable {
     }
 
     @FXML
-    void onActionSaveToMain(ActionEvent event) {
+    void onActionSaveToMain(ActionEvent event) throws IOException {
+        
+          // Parse fields on form
+        prodId += 1;
+        int id = prodId;
+        String name = nameTxt.getText();
+        int inv = Integer.parseInt(invTxt.getText());
+        float price = Float.parseFloat(priceTxt.getText());
+        int max = Integer.parseInt(maxTxt.getText());
+        int min = Integer.parseInt(minTxt.getText());
+        
+
+        Product prod1 = new Product(id, name, price, inv, min, max);
+        
+        for(Part part : associatedParts1)
+            {
+                prod1.addAssociatedPart(part);
+            }
+        
+        Inventory.addProduct(prod1);
+
+        switcher.screen("/View/mainForm.fxml", event);
 
     }
     
