@@ -111,7 +111,7 @@ public class Product {
 
     /**
      *
-     * @returnm the stock
+     * @return the stock
      */
     public int getStock() {
         return stock;

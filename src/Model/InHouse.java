@@ -28,7 +28,7 @@ public class InHouse extends Part{
 
     /**
      *
-     * @returnm machine id
+     * @return machine id
      */
     public int getMachineId() {
         return machineId;

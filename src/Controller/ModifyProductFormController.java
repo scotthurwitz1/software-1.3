@@ -26,7 +26,7 @@ import static main.Methods.update;
 import main.Switcher;
 
 /**
- *
+ * RUNTIME ERROR: In the save product methods I addressed the error thrown when a string is entered into a field expecting a numerical value.
  * @author scott
  */
 public class ModifyProductFormController implements Initializable {

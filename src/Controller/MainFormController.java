@@ -31,7 +31,7 @@ import static main.Methods.selectPart;
 import main.Switcher;
 
 /**
- *
+ * FUTURE ENHANCEMENT: As a future enhancement I would make the program such that any parts that are associated with a product cannot be deleted, and not just products with parts associated to them.
  * @author scott
  */
 public class MainFormController implements Initializable {
