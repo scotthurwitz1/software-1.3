@@ -139,17 +139,35 @@ public class AddProductFormController implements Initializable {
         int max = Integer.parseInt(maxTxt.getText());
         int min = Integer.parseInt(minTxt.getText());
         
-
-        Product prod1 = new Product(id, name, price, inv, min, max);
+        if (max <= min)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("Min value should be less than max.");
+            alert.showAndWait();
+        } 
         
-        for(Part part : associatedParts1)
-            {
-                prod1.addAssociatedPart(part);
-            }
+        else if (inv < min || inv > max)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("Inv should be between min and max");
+            alert.showAndWait();
+        } 
         
-        Inventory.addProduct(prod1);
+        else {
+            Product prod1 = new Product(id, name, price, inv, min, max);
 
-        switcher.screen("/View/mainForm.fxml", event);
+            for(Part part : associatedParts1)
+                {
+                    prod1.addAssociatedPart(part);
+                }
+
+            Inventory.addProduct(prod1);
+
+            switcher.screen("/View/mainForm.fxml", event);
+            
+        }
   
     }
 
@@ -165,17 +183,36 @@ public class AddProductFormController implements Initializable {
         int max = Integer.parseInt(maxTxt.getText());
         int min = Integer.parseInt(minTxt.getText());
         
-
-        Product prod1 = new Product(id, name, price, inv, min, max);
         
-        for(Part part : associatedParts1)
-            {
-                prod1.addAssociatedPart(part);
-            }
+        if (max <= min)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("Min value should be less than max.");
+            alert.showAndWait();
+        } 
         
-        Inventory.addProduct(prod1);
+        else if (inv < min || inv > max)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("Inv should be between min and max");
+            alert.showAndWait();
+        } 
+        
+        else {
+            Product prod1 = new Product(id, name, price, inv, min, max);
 
-        switcher.screen("/View/mainForm.fxml", event);
+            for(Part part : associatedParts1)
+                {
+                    prod1.addAssociatedPart(part);
+                }
+
+            Inventory.addProduct(prod1);
+
+            switcher.screen("/View/mainForm.fxml", event);
+            
+        }
 
     }
     

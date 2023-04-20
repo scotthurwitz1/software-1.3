@@ -152,19 +152,34 @@ public class ModifyProductFormController implements Initializable {
         int max = Integer.parseInt(maxTxt.getText());
         int min = Integer.parseInt(minTxt.getText());
         
-        Product prod = new Product(id, name, price, inv, max, min);
         
-        for(Part part : associatedParts1){
-          
-            prod.addAssociatedPart(part);
+        if (max <= min)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("Min value should be less than max.");
+            alert.showAndWait();
+        } 
+        
+        else if (inv < min || inv > max)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("Inv should be between min and max");
+            alert.showAndWait();
+        } else {
+        
+            Product prod = new Product(id, name, price, inv, max, min);
+
+            for(Part part : associatedParts1){
+
+                prod.addAssociatedPart(part);
+            }
+
+            update(id, prod);
+
+            switcher.screen("/View/mainForm.fxml", event);
         }
-        
-        System.out.println(id);
-//        System.out.println(prod);
-        
-        update(id, prod);
-        
-        switcher.screen("/View/mainForm.fxml", event);
 
     }
 
@@ -178,20 +193,33 @@ public class ModifyProductFormController implements Initializable {
         int max = Integer.parseInt(maxTxt.getText());
         int min = Integer.parseInt(minTxt.getText());
         
-        Product prod = new Product(id, name, price, inv, max, min);
+        if (max <= min)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("Min value should be less than max.");
+            alert.showAndWait();
+        } 
         
-        for(Part part : associatedParts1){
-          
-            prod.addAssociatedPart(part);
-        }
+        else if (inv < min || inv > max)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("Inv should be between min and max");
+            alert.showAndWait();
+        } else {
         
-        System.out.println(id);
-//        System.out.println(prod);
-        
-        update(id, prod);
-        
-        switcher.screen("/View/mainForm.fxml", event);
+            Product prod = new Product(id, name, price, inv, max, min);
 
+            for(Part part : associatedParts1){
+
+                prod.addAssociatedPart(part);
+            }
+
+            update(id, prod);
+
+            switcher.screen("/View/mainForm.fxml", event);
+        }
     }
     
     public void sendProd(Product prod)

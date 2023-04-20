@@ -116,6 +116,17 @@ public class MainFormController implements Initializable {
 
     @FXML
     void onActionDeleteProduct(ActionEvent event) {
+        
+        Product prod = prodTbl.getSelectionModel().getSelectedItem();
+        if (!prod.getAllAssociatedParts().isEmpty())
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("The user should not delete a product that has a part associated with it.");
+            alert.showAndWait();
+        }
+        else 
+            Inventory.deleteProduct(prod);
 
     }
     
@@ -156,7 +167,7 @@ public class MainFormController implements Initializable {
         try
         {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/View/addPartForm.fxml"));
+            loader.setLocation(getClass().getResource("/View/ModifyPartForm.fxml"));
             loader.load();
 
             ModifyPartFormController MPFController = loader.getController();

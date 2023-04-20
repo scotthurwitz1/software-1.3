@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -103,19 +104,36 @@ public class ModifyPartFormController implements Initializable {
         int max = Integer.parseInt(maxTxt.getText());
         int min = Integer.parseInt(minTxt.getText());
      
+        if (max <= min)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("Min value should be less than max.");
+            alert.showAndWait();
+        } 
         
-        if (outsourced = false){
-            int machineId = Integer.parseInt(machineIdTxt.getText());
-            InHouse part1 = new InHouse(id, name, price, inv, min, max, machineId);
-            update(id, part1);
-        }
+        else if (inv < min || inv > max)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("Inv should be between min and max");
+            alert.showAndWait();
+        } 
+        
         else {
-            String companyName = machineIdTxt.getText();
-            Outsourced part1 = new Outsourced(id, name, price, inv, min, max, companyName);
-            update(id, part1);
+            if (outsourced = false){
+                int machineId = Integer.parseInt(machineIdTxt.getText());
+                InHouse part1 = new InHouse(id, name, price, inv, min, max, machineId);
+                update(id, part1);
+            }
+            else {
+                String companyName = machineIdTxt.getText();
+                Outsourced part1 = new Outsourced(id, name, price, inv, min, max, companyName);
+                update(id, part1);
+            }
+
+            switcher.screen("/View/mainForm.fxml", event);
         }
-        
-        switcher.screen("/View/mainForm.fxml", event);
         
     }
     

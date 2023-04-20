@@ -40,7 +40,8 @@ public class Inventory {
     }
     
     public static  boolean deleteProduct(Product selectedProduct){
-        return false;
+        allProducts.remove(selectedProduct);
+        return allProducts.contains(selectedProduct);
     }
     public static ObservableList<Part> getAllParts() {
         return allParts;
