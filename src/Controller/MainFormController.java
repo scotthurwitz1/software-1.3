@@ -114,17 +114,27 @@ public class MainFormController implements Initializable {
         //error handling?
         Part part = partsTbl.getSelectionModel().getSelectedItem();
         
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Confirm delete part?");
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.isPresent() && result.get() == ButtonType.OK)
+        if(part != null)
         {
-            Inventory.deletePart(part);
-        }  
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Confirm delete part?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.isPresent() && result.get() == ButtonType.OK)
+            {
+                Inventory.deletePart(part);
+            }  
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setContentText("No Part Selected.");
+            alert.showAndWait();
+        }
+            
     }
 
     @FXML
     void onActionDeleteProduct(ActionEvent event) {
-        
+        try
+        {
         Product prod = prodTbl.getSelectionModel().getSelectedItem();
         if (!prod.getAllAssociatedParts().isEmpty())
         {
@@ -133,12 +143,21 @@ public class MainFormController implements Initializable {
             alert.setContentText("The user should not delete a product that has a part associated with it.");
             alert.showAndWait();
         } 
-        else 
+        else
         {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Confirm delete part?");
             Optional<ButtonType> result = alert.showAndWait();
             if(result.isPresent() && result.get() == ButtonType.OK)
                 Inventory.deleteProduct(prod);
+        }
+        }
+        
+    catch(NullPointerException e)
+        {  
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setContentText("No Product Selected.");
+            alert.showAndWait();
         }
     }
     
@@ -192,11 +211,7 @@ public class MainFormController implements Initializable {
         }
         
         catch(NullPointerException e)
-        {
-//            System.out.println("No part selected.");
-//            System.out.println("Exception " + e);
-//            System.out.println("Exception " + e.getMessage());
-            
+        {  
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning Dialog");
             alert.setContentText("No Part Selected.");
