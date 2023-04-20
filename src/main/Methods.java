@@ -58,11 +58,20 @@ public class Methods {
         return false;
     }
     
-    public static boolean delete(int id){
+    public static boolean deletePart(int id){
         
         for(Part part : Inventory.getAllParts()){
             if(part.getId()==id)
                 return Inventory.getAllParts().remove(part);
+        }
+        return false;
+    }
+    
+    public static boolean deleteProduct(int id){
+        
+        for(Product prod : Inventory.getAllProducts()){
+            if(prod.getId()==id)
+                return Inventory.getAllProducts().remove(prod);
         }
         return false;
     }

@@ -108,7 +108,6 @@ public class ModifyProductFormController implements Initializable {
         Part part = partListTbl.getSelectionModel().getSelectedItem();
         associatedParts1.add(part);
         System.out.println("part added " + associatedParts1);
-        
                 
     }
 
@@ -126,6 +125,10 @@ public class ModifyProductFormController implements Initializable {
 
     @FXML
     void onActionRemovePart(ActionEvent event) {
+        
+        Part part = relPartTbl.getSelectionModel().getSelectedItem();
+        associatedParts1.remove(part);
+        System.out.println(associatedParts1);
 
     }
 
