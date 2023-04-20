@@ -144,81 +144,97 @@ public class ModifyProductFormController implements Initializable {
 
     @FXML
     void onActionSaveProduct(ActionEvent event) throws IOException {
-        
-        int id = Integer.parseInt(idTxt.getText());
-        String name = nameTxt.getText();
-        double price = Double.parseDouble(priceTxt.getText());
-        int inv = Integer.parseInt(invTxt.getText());
-        int max = Integer.parseInt(maxTxt.getText());
-        int min = Integer.parseInt(minTxt.getText());
-        
-        
-        if (max <= min)
+        try
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setContentText("Min value should be less than max.");
-            alert.showAndWait();
-        } 
-        
-        else if (inv < min || inv > max)
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setContentText("Inv should be between min and max");
-            alert.showAndWait();
-        } else {
-        
-            Product prod = new Product(id, name, price, inv, max, min);
+            int id = Integer.parseInt(idTxt.getText());
+            String name = nameTxt.getText();
+            double price = Double.parseDouble(priceTxt.getText());
+            int inv = Integer.parseInt(invTxt.getText());
+            int max = Integer.parseInt(maxTxt.getText());
+            int min = Integer.parseInt(minTxt.getText());
 
-            for(Part part : associatedParts1){
 
-                prod.addAssociatedPart(part);
+            if (max <= min)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setContentText("Min value should be less than max.");
+                alert.showAndWait();
+            } 
+
+            else if (inv < min || inv > max)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setContentText("Inv should be between min and max");
+                alert.showAndWait();
+            } else {
+
+                Product prod = new Product(id, name, price, inv, max, min);
+
+                for(Part part : associatedParts1){
+
+                    prod.addAssociatedPart(part);
+                }
+
+                update(id, prod);
+
+                switcher.screen("/View/mainForm.fxml", event);
             }
-
-            update(id, prod);
-
-            switcher.screen("/View/mainForm.fxml", event);
         }
-
+        catch (NumberFormatException e)
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setContentText("Number value expected");
+            alert.showAndWait();
+        }
     }
 
     @FXML
     void onActionSaveToMain(ActionEvent event) throws IOException {
-        
-        int id = Integer.parseInt(idTxt.getText());
-        String name = nameTxt.getText();
-        double price = Double.parseDouble(priceTxt.getText());
-        int inv = Integer.parseInt(invTxt.getText());
-        int max = Integer.parseInt(maxTxt.getText());
-        int min = Integer.parseInt(minTxt.getText());
-        
-        if (max <= min)
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setContentText("Min value should be less than max.");
-            alert.showAndWait();
-        } 
-        
-        else if (inv < min || inv > max)
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setContentText("Inv should be between min and max");
-            alert.showAndWait();
-        } else {
-        
-            Product prod = new Product(id, name, price, inv, max, min);
+        try {
+            int id = Integer.parseInt(idTxt.getText());
+            String name = nameTxt.getText();
+            double price = Double.parseDouble(priceTxt.getText());
+            int inv = Integer.parseInt(invTxt.getText());
+            int max = Integer.parseInt(maxTxt.getText());
+            int min = Integer.parseInt(minTxt.getText());
 
-            for(Part part : associatedParts1){
+            if (max <= min)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setContentText("Min value should be less than max.");
+                alert.showAndWait();
+            } 
 
-                prod.addAssociatedPart(part);
+            else if (inv < min || inv > max)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setContentText("Inv should be between min and max");
+                alert.showAndWait();
+            } else {
+
+                Product prod = new Product(id, name, price, inv, max, min);
+
+                for(Part part : associatedParts1){
+
+                    prod.addAssociatedPart(part);
+                }
+
+                update(id, prod);
+
+                switcher.screen("/View/mainForm.fxml", event);
             }
-
-            update(id, prod);
-
-            switcher.screen("/View/mainForm.fxml", event);
+        }
+        catch (NumberFormatException e)
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setContentText("Number value expected");
+            alert.showAndWait();
         }
     }
     

@@ -85,57 +85,58 @@ public class AddPartFormController implements Initializable {
         
         switcher.screen("/View/mainForm.fxml", event);
         
-//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to return to Main Menu without saving?");
-//        
-//        Optional<ButtonType> result = alert.showAndWait();
-// 
-//        if(result.isPresent() && result.get() == ButtonType.OK)
-//        {
-//            switcher.screen("/View/mainForm.fxml", event);
-//        }
         
     }
 
     @FXML
     void onActionSavePart(ActionEvent event) throws IOException {
         
-        // Parse fields on form
-        partId += 1;
-        int id = partId;
-        String name = nameTxt.getText();
-        int inv = Integer.parseInt(invTxt.getText());
-        float price = Float.parseFloat(priceTxt.getText());
-        int max = Integer.parseInt(maxTxt.getText());
-        int min = Integer.parseInt(minTxt.getText());
-        
-        if (max <= min)
+        try
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setContentText("Min value should be less than max.");
-            alert.showAndWait();
-        } 
-        
-        else if (inv < min || inv > max)
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setContentText("Inv should be between min and max");
-            alert.showAndWait();
-        } 
-        else {
-            if (outsourced = false){
-                int machineId = Integer.parseInt(machineIdTxt.getText());
-                Inventory.addPart(new InHouse(id, name, price, inv, min, max, machineId));
-            }
-            else {
-                String companyName = machineIdTxt.getText();
-                Inventory.addPart(new Outsourced(id, name, price, inv, min, max, companyName));
-            }
+            // Parse fields on form
+            partId += 1;
+            int id = partId;
+            String name = nameTxt.getText();
+            int inv = Integer.parseInt(invTxt.getText());
+            float price = Float.parseFloat(priceTxt.getText());
+            int max = Integer.parseInt(maxTxt.getText());
+            int min = Integer.parseInt(minTxt.getText());
 
-            switcher.screen("/View/mainForm.fxml", event);
+            if (max <= min)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setContentText("Min value should be less than max.");
+                alert.showAndWait();
+            } 
+
+            else if (inv < min || inv > max)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setContentText("Inv should be between min and max");
+                alert.showAndWait();
+            } 
+            else {
+                if (outsourced = false){
+                    int machineId = Integer.parseInt(machineIdTxt.getText());
+                    Inventory.addPart(new InHouse(id, name, price, inv, min, max, machineId));
+                }
+                else {
+                    String companyName = machineIdTxt.getText();
+                    Inventory.addPart(new Outsourced(id, name, price, inv, min, max, companyName));
+                }
+
+                switcher.screen("/View/mainForm.fxml", event);
+            }
         }
-        
+        catch (NumberFormatException e)
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setContentText("Number value expected");
+            alert.showAndWait();
+        }
     }
     
     public void sendPart(Part part)

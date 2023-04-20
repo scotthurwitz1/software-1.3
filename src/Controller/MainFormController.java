@@ -273,24 +273,7 @@ public class MainFormController implements Initializable {
         prodPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
         prodInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         prodNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        
-//        if (search(6))
-//            System.out.println("Match");
-//        else
-//            System.out.println("No Match");
-        
-//        if(update(1, new InHouse(2, "twigs", 20.5, 1, 109, 200, 14)))
-//            System.out.println("Update Successful");
-//        else
-//            System.out.println("update failed");
-//
-//    if(Methods.delete(0))
-//        System.out.println("deleted");
-//    else
-//        System.out.println("no match");
-//    
-//    partsTbl.getSelectionModel().select(Methods.selectPart(0));
-  
+
 
     }
 }
